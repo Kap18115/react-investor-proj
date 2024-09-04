@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import InvestorList from './Component/InvestorList';
+import InvestorCommitments from './Component/InvestorCommitments';
+import AssetClassCommitments from './Component/AssetClassCommitments';
+
 
 function App() {
+  const [selectedInvestorId, setSelectedInvestorId] = useState(null);
+  const [selectedAssetClass, setSelectedAssetClass] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <div>
+      <InvestorList onSelectInvestor={setSelectedInvestorId} />
+      {selectedInvestorId &&(
+        <InvestorCommitments investorId={selectedInvestorId} />
+      )}
+      {selectedAssetClass &&(
+        <AssetClassCommitments assetClass={setSelectedAssetClass} />
+      )}
+      </div>
+  )
+};
 
 export default App;
